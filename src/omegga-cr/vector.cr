@@ -33,7 +33,7 @@ module Omegga
       Vector3.new(@x * other.x, @y * other.y, @z * other.z)
     end
 
-    def *(scalar : Float64) : self
+    def *(scalar : Number) : self
       Vector3.new(@x * scalar, @y * scalar, @z * scalar)
     end
 
