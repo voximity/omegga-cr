@@ -4,6 +4,10 @@ module Omegga
     getter y : Float64
     getter z : Float64
 
+    def self.new(x : Int32, y : Int32, z : Int32)
+      new(x.to_f64, y.to_f64, z.to_f64)
+    end
+
     def initialize(@x, @y, @z)
     end
 
