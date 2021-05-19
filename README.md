@@ -24,6 +24,13 @@ cd plugins/name-of-plugin-repo
 shards build -q && ./bin/name-of-shard
 ```
 
+Also, add the following `setup.sh` so Omegga will fetch this lib on install:
+
+```sh
+#!/bin/bash
+shards install
+```
+
 Be sure to change `name-of-plugin-repo` to the name of your plugin's repository and `name-of-shard` to the name you gave it in your `shard.yml`.
 
 ## Usage
