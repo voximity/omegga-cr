@@ -139,6 +139,9 @@ module Omegga::BRS
     property components : Hash(String, Component) = {} of String => Component
     property bricks : Array(Brick) = [] of Brick
 
+    def initialize
+    end
+
     def brick_count
       bricks.size
     end
