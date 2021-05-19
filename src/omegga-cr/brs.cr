@@ -114,6 +114,9 @@ module Omegga::BRS
     property color : Int32 | Array(UInt8) = 0
     property owner_index : Int32 = 0
     property components : Hash(String, Hash(String, String | Int32 | Float64)) = {} of String => Hash(String, String | Int32 | Float64)
+
+    def initialize
+    end
   end
 
   class Save
