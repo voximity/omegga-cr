@@ -1,0 +1,9 @@
+name: omegga-cr
+version: 0.1.0
+
+authors:
+  - Zander <zander@zanderf.net>
+
+crystal: 1.0.0
+
+license: MIT
