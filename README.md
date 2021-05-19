@@ -60,7 +60,7 @@ omegga.on_chat_command "pos" do |user, args| # runs when a user types `!pos` (or
 end
 
 omegga.on_chat_command "brickcount" do |user| # runs when a user types `!brickcount` in chat
-  omegga.broadcast "There are #{omegga.get_save_data.brick_count} bricks. #{user}." # Omegga::BRS::Save is a complete mirror of save properties from `brs-js`.
+  omegga.broadcast "There are #{omegga.get_save_data.brick_count} bricks, #{user}." # Omegga::BRS::Save is a complete mirror of save properties from `brs-js`.
 end
 
 omegga.start

@@ -53,8 +53,24 @@ module Omegga
       Math.sqrt(@x ** 2 + @y ** 2 + @z ** 2)
     end
 
-    def normalize : Vector3
+    def normalize : self
       self / magnitude
+    end
+
+    def cross(other : Vector3) : self
+      Vector3.new(
+        @y * other.z - @z * other.y,
+        @z * other.x - @x * other.z,
+        @x * other.y - @y * other.x
+      )
+    end
+
+    def angle_between(other : Vector3) : Float64
+      Math.acos(dot(other) / (magnitude * other.magnitude))
+    end
+
+    def abs : self
+      Vector3.new(@x.abs, @y.abs, @z.abs)
     end
 
     def to_s(io)
