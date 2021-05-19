@@ -1,4 +1,6 @@
 module Omegga::BRS
+  alias ComponentValue = Float64 | Int32 | String | Bool
+
   class User
     include JSON::Serializable
 
@@ -25,7 +27,7 @@ module Omegga::BRS
 
     property version : Int32
     property brick_indices : Array(Int32)
-    property properties : Hash(String, String | Int32 | Float64)
+    property properties : Hash(String, ComponentValue)
   end
 
   struct Vector
@@ -113,7 +115,7 @@ module Omegga::BRS
     property material_intensity : Int32 = 5
     property color : Int32 | Array(UInt8) = 0
     property owner_index : Int32 = 0
-    property components : Hash(String, Hash(String, String | Int32 | Float64)) = {} of String => Hash(String, String | Int32 | Float64)
+    property components : Hash(String, Hash(String, ComponentValue)) = {} of String => Hash(String, ComponentValue)
 
     def initialize
     end
