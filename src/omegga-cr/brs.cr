@@ -110,7 +110,7 @@ module Omegga::BRS
     property visibility : Bool = true
     property material_index : Int32 = 0
     property physical_index : Int32 = 0
-    property material_intensity : Int32 = 0
+    property material_intensity : Int32 = 5
     property color : Int32 | Array(UInt8) = 0
     property owner_index : Int32 = 0
     property components : Hash(String, Hash(String, String | Int32 | Float64)) = {} of String => Hash(String, String | Int32 | Float64)
@@ -134,7 +134,7 @@ module Omegga::BRS
     property brick_assets : Array(String) = ["PB_DefaultBrick"]
     property colors : Array(Array(UInt8)) = [] of Array(UInt8)
     property physical_materials : Array(String) = [] of String
-    property materials : Array(String) = [] of String
+    property materials : Array(String) = ["BMC_Plastic"] of String
     property brick_owners : Array(BrickOwner) = [] of BrickOwner
     property components : Hash(String, Component) = {} of String => Component
     property bricks : Array(Brick) = [] of Brick
