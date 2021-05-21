@@ -1,5 +1,9 @@
 module Omegga
   struct Vector3
+    def self.lerp(a : Float64, b : Float64, c : Float64)
+      a + (b - a) * c
+    end
+
     getter x : Float64
     getter y : Float64
     getter z : Float64
@@ -51,6 +55,10 @@ module Omegga
 
     def dot(other : Vector3) : Float64
       @x * other.x + @y * other.y + @z * other.z
+    end
+
+    def lerp(other : Vector3, c : Float64) : self
+      Vector3.new(Vector3.lerp(@x, other.x, c), Vector3.lerp(@y, other.y, c), Vector3.lerp(@z, other.z, c))
     end
 
     def magnitude : Float64
