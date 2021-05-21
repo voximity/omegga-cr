@@ -1,5 +1,5 @@
 module Omegga::BRS
-  alias ComponentValue = Float64 | Int32 | String | Bool | Array(Int32)
+  alias ComponentValue = Float64 | Int32 | String | Bool | Array(Int32 | Float64)
 
   class User
     include JSON::Serializable

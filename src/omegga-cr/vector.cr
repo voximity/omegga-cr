@@ -1,6 +1,6 @@
 module Omegga
   struct Vector3
-    def self.lerp(a : Float64, b : Float64, c : Float64)
+    def self.lerp(a : Float64, b : Float64, c : Float64) : Float64
       a + (b - a) * c
     end
 
