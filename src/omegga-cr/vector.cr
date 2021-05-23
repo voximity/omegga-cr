@@ -62,6 +62,10 @@ module Omegga
     end
 
     def magnitude : Float64
+      return @x if @y == 0.0 && z == 0.0
+      return @y if @x == 0.0 && z == 0.0
+      return @z if @x == 0.0 && y == 0.0
+      
       Math.sqrt(@x ** 2 + @y ** 2 + @z ** 2)
     end
 
@@ -83,6 +87,10 @@ module Omegga
 
     def abs : self
       Vector3.new(@x.abs, @y.abs, @z.abs)
+    end
+
+    def sign : self
+      Vector3.new(@x >= 0.0 ? 1 : -1, @y >= 0.0 ? 1 : -1, @z >= 0.0 ? 1 : -1)
     end
 
     def to_s(io)
