@@ -65,7 +65,7 @@ module Omegga
       return @x if @y == 0.0 && z == 0.0
       return @y if @x == 0.0 && z == 0.0
       return @z if @x == 0.0 && y == 0.0
-      
+
       Math.sqrt(@x ** 2 + @y ** 2 + @z ** 2)
     end
 
@@ -90,7 +90,10 @@ module Omegga
     end
 
     def sign : self
-      Vector3.new(@x >= 0.0 ? 1 : -1, @y >= 0.0 ? 1 : -1, @z >= 0.0 ? 1 : -1)
+      xs = @x == 0.0 ? 0.0 : (@x > 0.0 ? 1.0 : -1.0)
+      ys = @y == 0.0 ? 0.0 : (@y > 0.0 ? 1.0 : -1.0)
+      zs = @z == 0.0 ? 0.0 : (@z > 0.0 ? 1.0 : -1.0)
+      Vector3.new(xs, ys, zs)
     end
 
     def to_s(io)
