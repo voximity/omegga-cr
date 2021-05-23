@@ -12,6 +12,23 @@ module Omegga
       new(x.to_f64, y.to_f64, z.to_f64)
     end
 
+    def self.from_direction(dir : BRS::Direction) : self
+      case dir
+      in BRS::Direction::XPositive
+        Vector3.new(1, 0, 0)
+      in BRS::Direction::XNegative
+        Vector3.new(-1, 0, 0)
+      in BRS::Direction::YPositive
+        Vector3.new(0, 1, 0)
+      in BRS::Direction::YNegative
+        Vector3.new(0, -1, 0)
+      in BRS::Direction::ZPositive
+        Vector3.new(0, 0, 1)
+      in BRS::Direction::ZNegative
+        Vector3.new(0, 0, -1)
+      end
+    end
+
     def initialize(@x, @y, @z)
     end
 
