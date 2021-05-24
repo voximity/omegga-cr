@@ -489,6 +489,6 @@ end
 
 {% unless flag?("keep_io") %}
   def puts(*objects)
-    STDOUT.puts({"jsonrpc" => 2.0, "method": "log", "params": objects.map(&.to_s).join(" ")}.to_json)
+    STDOUT.puts({"jsonrpc" => "2.0", "method": "log", "params": objects.map(&.to_s).join(" ")}.to_json)
   end
 {% end %}
