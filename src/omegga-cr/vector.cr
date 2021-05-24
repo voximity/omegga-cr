@@ -67,10 +67,7 @@ module Omegga
     end
 
     def inverse
-      invx = @x == 0.0 ? 0.0 : 1.0 / @x
-      invy = @y == 0.0 ? 0.0 : 1.0 / @y
-      invz = @z == 0.0 ? 0.0 : 1.0 / @z 
-      Vector3.new(invx, invy, invz)
+      Vector3.new(1_f64 / @x, 1_f64 / @y, 1_f64 / @z)
     end
 
     def dot(other : Vector3) : Float64
