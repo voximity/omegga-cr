@@ -54,8 +54,8 @@ module Omegga::Log
     getter last : (Regex::MatchData -> Bool)?
 
     def initialize(pattern, *, timeout = 50.milliseconds, @debounce = false, @after_match_delay = nil, @last = nil)
-      raise ArgumentError.new("Timeout must be non-zero when watcher is on bundle mode") if @timeout == Time::Span.zero
       super(pattern, timeout: timeout)
+      raise ArgumentError.new("Timeout must be non-zero when watcher is on bundle mode") if @timeout == Time::Span.zero
     end
 
     # Wait to receive a response from the passed `Wrangler`, aggregating matches during the timeout into an array.
