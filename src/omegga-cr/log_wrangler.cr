@@ -69,7 +69,7 @@ module Omegga::Log
         select
         when match = channel.receive
           matches << match
-          break if !@last.nil? && @last.call(match) # break out of the loop if @last is specified and it returns true
+          break if !@last.nil? && @last.not_nil!.call(match) # break out of the loop if @last is specified and it returns true
         when timeout(matches.size == 0 ? @timeout : (@debounce ? second_timeout : second_timeout - (Time.monotonic - start_time)))
           break # break out of the while loop
         end
