@@ -38,6 +38,7 @@ class String
     when :gray
       c = "aaa"
     end
+    br_colorize(c)
   end
 end
 
