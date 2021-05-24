@@ -33,16 +33,16 @@ module Omegga::Log
       if @timeout == Time::Span.zero
         # there is no timeout, wait forever
         match = channel.receive
-        wrangler.wranglers.delete(self)
+        wrangler.watchers.delete(self)
         return match
       end
 
       select
       when match = channel.receive
-        wrangler.wranglers.delete(self) # delete this watcher
+        wrangler.watchers.delete(self) # delete this watcher
         return match
       when timeout @timeout
-        wrangler.wranglers.delete(self) # delete this watcher
+        wrangler.watchers.delete(self) # delete this watcher
         raise WatcherTimeoutError.new
       end
     end
@@ -74,6 +74,7 @@ module Omegga::Log
           break # break out of the while loop
         end
       end
+      wrangler.watchers.delete(self)
       return matches
     end
   end
