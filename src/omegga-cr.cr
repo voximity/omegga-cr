@@ -3,6 +3,7 @@ require "uuid"
 require "uuid/json"
 
 require "./omegga-cr/brs"
+require "./omegga-cr/log_wrangler"
 require "./omegga-cr/player"
 require "./omegga-cr/rpc"
 require "./omegga-cr/vector"
@@ -389,10 +390,9 @@ module Omegga
 
     ### BASE LOGIC
 
-    getter wrangler : Log::Wrangler
+    getter wrangler = Log::Wrangler.new
 
     def initialize
-      @wrangler = Log::Wrangler.new
     end
 
     # Start responding to the Omegga RPC server.

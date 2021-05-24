@@ -18,17 +18,10 @@ module Omegga::Log
 
   class Watcher
     getter pattern : Regex
-
     getter timeout : Time::Span
-    getter debounce : Bool
-    getter after_match_delay : Time::Span?
-    getter last : (Regex::MatchData -> Bool)?
-
     getter channel : Channel(Regex::MatchData)
 
-    def initialize(@pattern, *, @timeout = 50.milliseconds, @debounce = false, @after_match_delay = nil, @last = nil)
-      raise ArgumentError.new("Timeout must be non-zero when watcher is on bundle mode") if @bundle && @timeout == Time::Span.zero
-
+    def initialize(@pattern, *, @timeout = 50.milliseconds)
       @channel = Channel(Regex::MatchData).new
     end
 
@@ -52,6 +45,17 @@ module Omegga::Log
         wrangler.wranglers.delete(self) # delete this watcher
         raise WatcherTimeoutError.new
       end
+    end
+  end
+
+  class WatcherBundled < Watcher
+    getter debounce : Bool
+    getter after_match_delay : Time::Span?
+    getter last : (Regex::MatchData -> Bool)?
+
+    def initialize(pattern, *, timeout = 50.milliseconds, @debounce = false, @after_match_delay = nil, @last = nil)
+      raise ArgumentError.new("Timeout must be non-zero when watcher is on bundle mode") if @timeout == Time::Span.zero
+      super(pattern, timeout: timeout)
     end
 
     # Wait to receive a response from the passed `Wrangler`, aggregating matches during the timeout into an array.
@@ -78,9 +82,7 @@ module Omegga::Log
     getter matchers = [] of Matcher
     getter watchers = [] of Watcher
 
-    @client : RPCClient
-
-    def initialize(@client)
+    def initialize
     end
 
     # Adds a new `Matcher`. Alternatively, use `Wrangler#matchers << ...`.
