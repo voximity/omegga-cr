@@ -7,42 +7,42 @@ require "./omegga-cr/player"
 require "./omegga-cr/rpc"
 require "./omegga-cr/vector"
 
-module Omegga
-  extend self
+class String
+  def br_colorize(color : String)
+    "<color=\"#{color}\">#{self}</>"
+  end
 
-  class String
-    def br_colorize(color : String)
-      "<color=\"#{color}\">#{self}</>"
-    end
+  def br_bold
+    "<b>#{self}</>"
+  end
 
-    def br_bold
-      "<b>#{self}</>"
-    end
-
-    def br_colorize(color : Symbol)
+  def br_colorize(color : Symbol)
+    c = "fff"
+    case color
+    when :red
+      c = "f00"
+    when :green
+      c = "0f0"
+    when :blue
+      c = "00f"
+    when :yellow
+      c = "ff0"
+    when :cyan
+      c = "0ff"
+    when :magenta
+      c = "f0f"
+    when :white
       c = "fff"
-      case color
-      when :red
-        c = "f00"
-      when :green
-        c = "0f0"
-      when :blue
-        c = "00f"
-      when :yellow
-        c = "ff0"
-      when :cyan
-        c = "0ff"
-      when :magenta
-        c = "f0f"
-      when :white
-        c = "fff"
-      when :black
-        c = "000"
-      when :gray
-        c = "aaa"
-      end
+    when :black
+      c = "000"
+    when :gray
+      c = "aaa"
     end
   end
+end
+
+module Omegga
+  extend self
 
   class RegisteredCommands
     include JSON::Serializable
