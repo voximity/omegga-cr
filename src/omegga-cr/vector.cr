@@ -29,7 +29,7 @@ module Omegga
       end
     end
 
-    def initialize(@x, @y, @z)
+    def initialize(@x = 0.0, @y = 0.0, @z = 0.0)
     end
 
     def initialize(arr : Array(Float64))

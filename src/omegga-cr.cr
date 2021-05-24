@@ -99,7 +99,7 @@ module Omegga
 
     # Send a notification to the server.
     protected def send(payload : RPC::Notification)
-      puts payload.to_json
+      STDOUT.puts payload.to_json
     end
 
     # Send a request to the server, expecting a response.
@@ -112,7 +112,7 @@ module Omegga
       payload = RPC::Request(T).new(method, params, id)
 
       @channel_map[id] = Channel(RPC::Response(JSON::Any)).new
-      puts payload.to_json
+      STDOUT.puts payload.to_json
       response = @channel_map[id].receive
       @channel_map.delete(id)
       
@@ -127,7 +127,7 @@ module Omegga
 
     # Respond to a request from the server.
     protected def respond(payload : RPC::Response(T)) forall T
-      puts payload.to_json
+      STDOUT.puts payload.to_json
     end
 
 
@@ -395,7 +395,7 @@ module Omegga
     # Start responding to the Omegga RPC server.
     def start
       loop do
-        s = gets.not_nil!
+        s = STDIN.gets.not_nil!
 
         spawn do
           # determine what the payload is
@@ -486,3 +486,9 @@ module Omegga
     end
   end
 end
+
+{% unless flag?("keep_io") %}
+  def puts(*objects)
+    STDOUT.puts({"jsonrpc" => 2.0, "method": "log", "params": objects.map(&.to_s).join(" ")}.to_json)
+  end
+{% end %}
