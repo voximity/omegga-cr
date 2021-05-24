@@ -389,7 +389,10 @@ module Omegga
 
     ### BASE LOGIC
 
+    getter wrangler : Log::Wrangler
+
     def initialize
+      @wrangler = Log::Wrangler.new
     end
 
     # Start responding to the Omegga RPC server.
@@ -422,6 +425,10 @@ module Omegga
             when "line"
 
               params = parsed["params"].as_a.map &.as_s
+              line = params[0]
+
+              # run through the wrangler first
+              @wrangler.handle_line(line)
               fire_line params[0]
 
             when "start"
