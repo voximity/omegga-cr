@@ -400,7 +400,7 @@ module Omegga
       loop do
         s = STDIN.gets.not_nil!
 
-        spawn do
+        spawn same_thread: true do
           # determine what the payload is
           parsed = JSON.parse(s).as_h
 
