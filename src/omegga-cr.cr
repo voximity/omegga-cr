@@ -269,8 +269,9 @@ module Omegga
     end
 
     # Broadcasts a message to all players.
-    def broadcast(content : String)
-      invoke "broadcast", content
+    def broadcast(content : String, notify : Bool = false)
+      invoke "broadcast", content unless notify
+      send RPC::Notification(String).new("broadcast", content) if notify
     end
 
     # Whispers a message (`content`) to a specific player (`target`).
