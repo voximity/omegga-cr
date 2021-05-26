@@ -204,7 +204,7 @@ module Omegga
 
     macro rpc_log(type)
       def {{type}}(content : String)
-        invoke {{type.stringify}}, content
+        send RPC::Notification(String).new({{type.stringify}}, content)
       end
     end
 
