@@ -389,12 +389,12 @@ module Omegga
 
     # Unloads the current plugin.
     def unload
-      invoke "unload", 0 
+      send RPC::Notification(Int32).new("unload", 0)
     end
 
     # Reloads the current plugin.
     def reload
-      invoke "reload", 0
+      send RPC::Notification(Int32).new("reload", 0)
     end
 
 
