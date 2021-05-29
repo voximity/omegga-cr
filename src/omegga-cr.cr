@@ -387,6 +387,16 @@ module Omegga
       invoke "changeMap", map
     end
 
+    # Unloads the current plugin.
+    def unload
+      invoke "unload", 0 
+    end
+
+    # Reloads the current plugin.
+    def reload
+      invoke "reload", 0
+    end
+
 
 
     ### BASE LOGIC
